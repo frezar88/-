@@ -1,6 +1,19 @@
 class Survey {
 
-    data = {};
+    data = [
+        {
+            'question': 'Если бы Ваш знакомый захотел обратиться в сервисный центр «Renault» для ремонта своего автомобиля, стали бы Вы рекомендовать ему наш ДЦ?',
+            'appraise': [],
+            'comment': ''
+        },
+        {
+            'question': 'Подводя итог Вашего последнего визита, оцените по 10-бальной шкале работу сервисного центра в целом?',
+            'appraise': [],
+            'comment': []
+        }
+
+
+    ];
 
     ellipseBlock = document.querySelector('.survey-main__ellipse');
 
@@ -24,9 +37,25 @@ class Survey {
 
 
     constructor() {
-        this.allUI();
+
+        this.parseUrl()
+
 
     }
+
+    parseUrl() {
+        let url = new URL(window.location.href);
+        let id = url.searchParams.get("id");
+
+        if (id) {
+            this.allUI();
+            return
+        } else {
+            this.createBlockSurveyBanning()
+        }
+    }
+
+
 
     allUI() {
         this.showAppraiseBlock();
@@ -100,7 +129,7 @@ class Survey {
     editCurrentEvaluate(value) {
         let listEvaluateForQuestionFirst = ['Точно нет', 'Возможно, нет', 'Да, возможно', 'Да, конечно'];
         let listEvaluateForQuestionTwo = ['Полностью не удовлетворён', 'Скорее, не удовлетворён', 'Нейтрально', 'Скорее, удовлетворён', 'Полностью удовлетворён'];
-        
+
         this.currentEvaluateSpanFirst.innerHTML = value + '. '
 
         if (this.questionTextBlock.innerHTML.substr(0, 5) === 'Если ') {
@@ -116,7 +145,7 @@ class Survey {
         } else {
             if (value === 1 || value === 2) {
                 this.currentEvaluateSpanLast.innerHTML = listEvaluateForQuestionTwo[0];
-            } else if (value === 3 || value === 4 ) {
+            } else if (value === 3 || value === 4) {
                 this.currentEvaluateSpanLast.innerHTML = listEvaluateForQuestionTwo[1];
             } else if (value === 5 || value === 6) {
                 this.currentEvaluateSpanLast.innerHTML = listEvaluateForQuestionTwo[2];
@@ -126,12 +155,17 @@ class Survey {
                 this.currentEvaluateSpanLast.innerHTML = listEvaluateForQuestionTwo[4];
             }
         }
-        
-        
+
+
     }
 
     showAnswerBlock() {
         this.btnNextQuestionFirst.addEventListener('click', (e) => {
+
+            this.data[0].appraise[0] = this.inputRange.attributes.value.value
+
+
+
 
             document.querySelector('footer').classList.add('hide');
             document.querySelector('footer').classList.add('absolute');
@@ -159,16 +193,18 @@ class Survey {
             this.answerToQuestion1.classList.remove('hide')
             this.answerToQuestion1.classList.remove('absolute')
 
-            
-
             let btnSendAnswer = document.querySelector('.question-send')
-            btnSendAnswer.addEventListener('click' , ()=>{
-                
-                this.showQuestionTwo()   
+            btnSendAnswer.addEventListener('click', () => {
+                this.showQuestionTwo()
+
+                let textareaQuestion1 = document.querySelector('textarea[name="question1"]')
+
+                this.data[0].comment = textareaQuestion1.value;
             })
 
+
         } else {
-           
+
             this.showQuestionTwo()
         }
     }
@@ -182,11 +218,11 @@ class Survey {
         this.questionTextBlock.innerHTML = 'Подводя итог Вашего последнего визита, оцените по 10-бальной шкале работу сервисного центра в целом?'
 
         this.showEllipseQuestionTwo()
-        
+
     }
-    
+
     showEllipseQuestionTwo() {
-        
+
         document.querySelector('.survey-footer p span').innerHTML = 2;
         let ellipseQuestionTwo = document.querySelector('.survey-main__ellipse-question2')
         ellipseQuestionTwo.classList.remove('hide');
@@ -199,7 +235,7 @@ class Survey {
     }
 
     addEventForEllipseQuestionTwo(block) {
-        
+
         block.addEventListener('touchmove', () => {
             block.classList.add('hide')
             this.answerToQuestion1.classList.add('hide')
@@ -208,7 +244,7 @@ class Survey {
             this.btnNextQuestionTwo.classList.remove('absolute');
 
             this.editCurrentEvaluate(this.inputRange.attributes.value.value)
-            
+
             this.addEventForBtnNextQuestionTwo()
             setTimeout(() => {
                 block.classList.add('absolute')
@@ -226,9 +262,13 @@ class Survey {
     addEventForBtnNextQuestionTwo() {
         this.btnNextQuestionTwo.addEventListener('click', (e) => {
 
+
+
+
+
             document.querySelector('footer').classList.add('hide');
             document.querySelector('footer').classList.add('absolute');
-            
+
             if (this.inputRange.attributes.value.value < 9) {
                 let formBad = document.querySelector('.survey-main__answer-to-question2 form:last-child')
                 formBad.classList.add('hide');
@@ -269,7 +309,7 @@ class Survey {
                 }, 300);
             }
 
-            
+
         })
     }
 
@@ -277,15 +317,15 @@ class Survey {
         let labels = document.querySelectorAll('.survey-main__answer-to-question2 label input')
         labels.forEach(el => {
             el.addEventListener('click', () => {
-               if (el.checked) {
-                   el.parentNode.classList.add('active')
-               } else {
-                   el.parentNode.classList.remove('active')
-               }
+                if (el.checked) {
+                    el.parentNode.classList.add('active')
+                } else {
+                    el.parentNode.classList.remove('active')
+                }
             })
         });
     }
-    
+
     addEventFromBtnSend() {
         this.btnNextSend.addEventListener('click', () => {
             let questionBlock = document.querySelector('.survey-main__question')
@@ -297,6 +337,14 @@ class Survey {
             buttonsBlock.classList.add('hide');
             evaluateBlock.classList.add('hide');
 
+            let textareaQuestion2 = document.querySelector('textarea[name="question2-good"]')
+
+            this.data[1].appraise[0] = this.inputRange.attributes.value.value
+
+            this.createJsonData()
+
+            console.log(this.data)
+
             setTimeout(() => {
                 questionBlock.classList.add('absolute')
                 this.answerToQuestion2.classList.add('absolute');
@@ -306,8 +354,31 @@ class Survey {
                 this.showThanksBlock()
 
             }, 300);
-             
+
+            this.requestData("http://test/", "POST", this.data)
+
         })
+    }
+
+    createJsonData() {
+        let inputs = document.querySelectorAll('.survey-main__answer-to-question2 form:first-child input:checked')
+        if (inputs.length) {
+
+            let inputTextArrey = []
+            inputs.forEach(el => {
+                let inputText = (el.parentNode.innerHTML).replace('<input type="checkbox">', '')
+                let textareaValue = document.querySelector('textarea[name="question2"]')
+                inputTextArrey.push(inputText)
+                this.data[1].inputs = inputTextArrey
+                this.data[1].comment = textareaValue.value
+
+            });
+        } else {
+            let textareaGoodQuestion2 = document.querySelector('textarea[name="question2-good"]')
+            console.log('fdsfdsfdsfdsfds')
+            this.data[1].comment = textareaGoodQuestion2.value
+        }
+
     }
 
     showThanksBlock() {
@@ -315,6 +386,40 @@ class Survey {
         thenksBlock.classList.remove('hide');
         thenksBlock.classList.remove('absolute');
     }
+
+
+    createBlockSurveyBanning() {
+        document.querySelector('.survey').style.display = 'block';
+        document.querySelector('.survey-footer').style.display = 'none';
+
+        let mainBlock = document.querySelector('.survey-main');
+        mainBlock.innerHTML = ''
+
+        let SurvayBanning = document.createElement('div');
+        SurvayBanning.className = 'survay-banning';
+
+        let suvayBanningText = document.createElement('p');
+        suvayBanningText.innerHTML = 'Cрок опроса истёк.'
+
+        SurvayBanning.appendChild(suvayBanningText);
+        mainBlock.appendChild(SurvayBanning);
+
+    }
+
+    async requestData(url, method, body) {
+
+        let domain = url;
+            
+        let response = await fetch(domain, {
+            method: method,
+            headers: {},
+            body: JSON.stringify(body),
+        });
+        if (!response.ok) return console.error("Error");
+        return response.json();
+
+    }
+
 }
 
 

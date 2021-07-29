@@ -432,6 +432,16 @@ body {
   color: #000000;
 }
 
+.survay-banning {
+  margin-top: 100px;
+}
+
+.survay-banning p {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
 @media (max-width: 320px) {
   .survey-header {
     margin-bottom: 25px;
