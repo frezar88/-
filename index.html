@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Survey</title>
+</head>
+
+<body>
+    <div class="survey">
+        <div class="survey__wrapper">
+            <header class="survey-header">
+                <img src="/img/logo.svg" alt="logo">
+            </header>
+            <main class="survey-main">
+                <div class="survey-main__question">
+                    <p>Если бы Ваш знакомый захотел обратиться в сервисный центр «Renault» для ремонта своего автомобиля, стали бы Вы рекомендовать ему наш ДЦ?</p>
+                </div>
+                <div class="survey-main__appraise">
+                    <div class="survey-main__ellipse">
+                        <div></div>
+                        <p>Прокрути, чтобы выбрать</p>
+                    </div>
+                    <div class="survey-main__ellipse-question2 hide absolute">
+                        <div></div>
+                        <p>Прокрути, чтобы выбрать</p>
+                    </div>
+                    <div class="survey-main__appraise-block hide absolute">
+                        <form id="range">
+                            <label>
+                                <input type="range" min="0" max="10" value="7">
+                            </label>
+                        </form>
+                        <div class="survey-main__current-evaluate">
+                            <p><span>7.</span> <span>Да, возможно</span></p>
+                        </div>
+
+                        <div class="survey-main__appraise-bar">
+                            <div class="survey-main__appraise-bar-item">1</div>
+                            <div class="survey-main__appraise-bar-item">2</div>
+                            <div class="survey-main__appraise-bar-item">3</div>
+                            <div class="survey-main__appraise-bar-item">4</div>
+                            <div class="survey-main__appraise-bar-item">5</div>
+                            <div class="survey-main__appraise-bar-item">6</div>
+                            <div class="survey-main__appraise-bar-item">7</div>
+                            <div class="survey-main__appraise-bar-item">8</div>
+                            <div class="survey-main__appraise-bar-item">9</div>
+                            <div class="survey-main__appraise-bar-item">10</div>
+                            <div class="survey-main__appraise-bar-line"></div>
+                        </div>
+                        <div class="survey-main__answer-to-question1 hide absolute">
+                            <form>
+                                <p>Будем рады, если Вы в нескольких словах укажете, почему на вопрос о рекомендации
+                                    Дилера Вы ответили "<span>Точно нет</span>"?</p>
+                                <textarea name="question1" placeholder="Введите текст здесь"></textarea>
+                            </form>
+                        </div>
+                        <div class="survey-main__answer-to-question2 hide absolute">
+                            <form>
+                                <p>"Что именно Вам не понравилось?</p>
+                                <ul>
+                                    <li>
+                                        <label ><input type="checkbox">Не понравилась работа мастера</label>
+                                    </li>
+                                    <li>
+                                        <label><input type="checkbox">Не устроило качество работ/диагностики</label>
+                                    </li>
+                                    <li>
+                                        <label><input type="checkbox">Отсутствие необходимых запчастей</label>
+                                    </li>
+                                    <li>
+                                        <label> <input type="checkbox">Другое (комментарий)</label>
+                                    </li>
+                                </ul>
+                                <textarea name="question2" placeholder="Введите текст здесь"></textarea>
+                            </form>
+                            <form class="good-appraise">
+                                <span>Комментарий</span>
+                                <label >
+                                    <textarea name="question2-good" placeholder="Введите текст здесь"></textarea>
+                                </label>
+                                <p>*На электронную почту, возможно, придёт более полная анкета об оценке качества обслуживания. Оценка 9-10 означает, что Вы всем удовлетворены.</p>
+                            </form>
+                        </div>
+                        <div class="survey-main__appraise-button">
+                            <button type="button">Далее</button>
+                            <button class="question2 hide absolute" type="button">Далее</button>
+                            <button class="send hide absolute" type="button">Отправить</button>
+                        </div>
+
+                    </div>
+                    <div class="survey-main__thanks hide absolute">
+                        <p>Спасибо за уделенное время, Ваше мнение очень значимо для нас!</p>
+                        <p>Ваша оценка позволит выбрать правильное направление в работе над улучшением качества предоставляемых нами услуг.</p>
+                    </div>
+                </div>
+            </main>
+            <footer class="survey-footer">
+                <p>Вопрос <span>1</span> /2</p>
+            </footer>
+        </div>
+
+    </div>
+    <script src="/scripts/main.js"></script>
+</body>
+
+</html>

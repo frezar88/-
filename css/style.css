@@ -1,0 +1,451 @@
+@charset "UTF-8";
+/*Обнуление*/
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*,
+*:before,
+*:after :focus,
+:active {
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+/*--------------------*/
+@font-face {
+  font-family: Renault Life;
+  src: url(../fonts/NotoSans.woff);
+}
+
+body {
+  font-family: "Renault Life";
+}
+
+@keyframes shaking-left {
+  0% {
+    transform: translate(0px);
+  }
+  50% {
+    transform: translate(3px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes shaking-right {
+  0% {
+    transform: translate(0px);
+  }
+  50% {
+    transform: translate(-3px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.survey {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.survey__wrapper {
+  max-width: 500px;
+}
+
+.survey-header {
+  margin-bottom: 50px;
+}
+
+.survey-main__question {
+  margin-bottom: 20px;
+}
+
+.survey-main__question p {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+}
+
+.survey-main__ellipse, .survey-main__ellipse-question2 {
+  transition: .3s;
+  margin-top: 60px;
+}
+
+.survey-main__ellipse p, .survey-main__ellipse-question2 p {
+  margin-top: 15px;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+}
+
+.survey-main__ellipse div, .survey-main__ellipse-question2 div {
+  margin: 0 auto;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: solid 2px #000;
+  cursor: pointer;
+  transition: transform 0.5s;
+}
+
+.survey-main__ellipse div::before, .survey-main__ellipse-question2 div::before {
+  animation: shaking-left 1.3s linear alternate infinite;
+  animation-delay: 0s;
+  position: absolute;
+  content: url("/img/arrow-left.svg");
+  top: calc(50% - 8px);
+  left: calc(50% - 20px);
+}
+
+.survey-main__ellipse div::after, .survey-main__ellipse-question2 div::after {
+  animation: shaking-right 1.3s linear alternate infinite;
+  position: absolute;
+  content: url("/img/arrow-right.svg");
+  top: calc(50% - 8px);
+  left: calc(50% + 10px);
+}
+
+.survey-main__appraise-block form#range {
+  opacity: 0;
+  position: absolute;
+  z-index: -2;
+}
+
+.survey-main__current-evaluate {
+  margin-bottom: 20px;
+}
+
+.survey-main__current-evaluate p {
+  font-family: Renault Life;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  text-align: center;
+}
+
+.survey-main__appraise-bar {
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  width: 100%;
+  height: 151px;
+  position: relative;
+}
+
+.survey-main__appraise-bar-line {
+  transition: background .3s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 70%;
+  background: #f2c94c;
+}
+
+.survey-main__appraise-bar-item {
+  z-index: 1;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 10px 2px;
+  font-family: Roboto;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+  color: #4F4F4F;
+}
+
+.survey-main__appraise-bar-item::before {
+  position: absolute;
+  content: '';
+  width: 1px;
+  height: 15px;
+  top: 0;
+  right: 0;
+  background: #4F4F4F;
+}
+
+.survey-main__appraise-bar-item:after {
+  position: absolute;
+  content: '';
+  width: 1px;
+  height: 15px;
+  bottom: 0;
+  right: 0;
+  background: #4F4F4F;
+}
+
+.survey-main__answer-to-question1 p {
+  font-size: 15px;
+  line-height: 19px;
+  text-align: center;
+}
+
+.survey-main__answer-to-question2 p {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  margin-bottom: 10px;
+}
+
+.survey-main__answer-to-question1 form, .survey-main__answer-to-question2 form {
+  display: grid;
+}
+
+.survey-main__answer-to-question1 ul li, .survey-main__answer-to-question2 ul li {
+  padding: 5px 0;
+}
+
+.survey-main__answer-to-question1 ul li label, .survey-main__answer-to-question2 ul li label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.survey-main__answer-to-question1 ul li label::after, .survey-main__answer-to-question2 ul li label::after {
+  display: none;
+  position: absolute;
+  content: '';
+  left: -5px;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid #BDBDBD;
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+
+.survey-main__answer-to-question1 ul li label::before, .survey-main__answer-to-question2 ul li label::before {
+  position: absolute;
+  content: '';
+  left: -5px;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid #BDBDBD;
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+
+.survey-main__answer-to-question1 ul li label input, .survey-main__answer-to-question2 ul li label input {
+  margin-right: 10px;
+  opacity: 0;
+}
+
+.survey-main__answer-to-question1 ul li .active::after, .survey-main__answer-to-question2 ul li .active::after {
+  display: block;
+  position: absolute;
+  content: url("/img/check.svg");
+  left: -5px;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid #BDBDBD;
+  box-sizing: border-box;
+  border-radius: 2px;
+  background: #FFCC33;
+}
+
+.survey-main__answer-to-question1 textarea, .survey-main__answer-to-question2 textarea {
+  width: 100%;
+  padding: 5px;
+  height: 120px;
+  margin-top: 15px;
+  resize: none;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  font-size: 18px;
+  line-height: 17px;
+}
+
+.survey-main__answer-to-question1 textarea:focus, .survey-main__answer-to-question2 textarea:focus {
+  outline: none;
+}
+
+.survey-main__appraise-button {
+  display: flex;
+  justify-content: center;
+}
+
+.survey-main__appraise-button button {
+  margin-top: 20px;
+  font-family: Renault Life;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  background: #FFCC33;
+  padding: 10px 20px;
+}
+
+.survey-main__appraise-button button:active {
+  box-shadow: 0 0 4px black;
+}
+
+.survey-main__thanks {
+  margin-top: 100px;
+}
+
+.survey-main__thanks p {
+  text-align: center;
+}
+
+.survey-main__thanks p:first-child {
+  line-height: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.survey-main__thanks p:last-child {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.survey-footer {
+  position: absolute;
+  bottom: 20px;
+  left: calc(50% - 40px);
+}
+
+.hide {
+  transition: .3s;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.absolute {
+  position: absolute;
+  transition: .3s;
+  opacity: 0;
+  transform: scale(0);
+  z-index: -1;
+}
+
+.send {
+  margin-bottom: 50px;
+}
+
+.good-appraise span {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.good-appraise label textarea {
+  margin-top: 5px;
+  height: 150px;
+  font-size: 18px;
+}
+
+.good-appraise p {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #000000;
+}
+
+@media (max-width: 320px) {
+  .survey-header {
+    margin-bottom: 25px;
+  }
+  .survey-header img {
+    width: 40px;
+  }
+  .survey-main__question {
+    margin-bottom: 20px;
+  }
+  .survey-main__appraise-bar {
+    height: 130px;
+  }
+  .survey-main__answer-to-question1 textarea {
+    height: 100px;
+  }
+}

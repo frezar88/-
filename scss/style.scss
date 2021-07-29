@@ -1,0 +1,418 @@
+@import "nullstyle";
+
+
+@font-face {
+    font-family: Renault Life;
+    src: url(../fonts/NotoSans.woff);
+}
+
+body {
+    font-family: "Renault Life";
+}
+
+@keyframes shaking-left {
+    0% {
+        transform: translate(0px);
+    }
+
+    50% {
+        transform: translate(3px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes shaking-right {
+    0% {
+        transform: translate(0px);
+    }
+
+    50% {
+        transform: translate(-3px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+
+.survey {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__wrapper {
+        max-width: 500px;
+    }
+}
+
+.survey-header {
+    margin-bottom: 50px;
+}
+
+.survey-main {
+
+    &__question {
+        margin-bottom: 20px;
+
+        p {
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 19px;
+            text-align: center;
+        }
+    }
+
+
+    &__ellipse,
+    &__ellipse-question2 {
+        transition: .3s;
+        margin-top: 60px;
+
+        p {
+            margin-top: 15px;
+            font-weight: 300;
+            font-size: 12px;
+            line-height: 14px;
+            text-align: center;
+        }
+
+        div {
+
+            margin: 0 auto;
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: solid 2px #000;
+            cursor: pointer;
+            transition: transform 0.5s;
+
+            &::before {
+                animation: shaking-left 1.3s linear alternate infinite;
+                animation-delay: 0s;
+                position: absolute;
+                content: url('/img/arrow-left.svg');
+                top: calc(50% - 8px);
+                left: calc(50% - 20px);
+
+            }
+
+            &::after {
+                animation: shaking-right 1.3s linear alternate infinite;
+                position: absolute;
+                content: url('/img/arrow-right.svg');
+                top: calc(50% - 8px);
+                left: calc(50% + 10px);
+            }
+        }
+
+    }
+
+    &__appraise-block {
+
+
+        form#range {
+            opacity: 0;
+            position: absolute;
+            z-index: -2;
+        }
+    }
+
+    &__current-evaluate {
+
+        margin-bottom: 20px;
+
+        p {
+            font-family: Renault Life;
+            font-weight: bold;
+            font-size: 22px;
+            line-height: 28px;
+            text-align: center;
+        }
+    }
+
+    &__appraise-bar {
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        width: 100%;
+        height: 151px;
+        position: relative;
+    }
+
+    &__appraise-bar-line {
+        transition: background .3s;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 70%;
+        background: rgb(242, 201, 76);
+    }
+
+    &__appraise-bar-item {
+        z-index: 1;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 10px 2px;
+        font-family: Roboto;
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 14px;
+        color: #4F4F4F;
+
+        &::before {
+            position: absolute;
+            content: '';
+            width: 1px;
+            height: 15px;
+            top: 0;
+            right: 0;
+            background: #4F4F4F;
+        }
+
+        &:after {
+            position: absolute;
+            content: '';
+            width: 1px;
+            height: 15px;
+            bottom: 0;
+            right: 0;
+            background: #4F4F4F;
+        }
+    }
+
+    &__answer-to-question1 {
+        p {
+            font-size: 15px;
+            line-height: 19px;
+            text-align: center;
+        }
+    }
+
+    &__answer-to-question2 {
+        p {
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 19px;
+            margin-bottom: 10px;
+        }
+    }
+
+    &__answer-to-question1,
+    &__answer-to-question2 {
+        form {
+            display: grid;
+        }
+
+
+
+        ul {
+            li {
+                padding: 5px 0;
+
+                label {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 19px;
+
+                    &::after {
+                        display: none;
+                        position: absolute;
+                        content: '';
+                        left: -5px;
+                        top: 0;
+                        width: 20px;
+                        height: 20px;
+                        border: 2.5px solid #BDBDBD;
+                        box-sizing: border-box;
+                        border-radius: 2px;
+
+                    }
+
+                    &::before {
+                        position: absolute;
+                        content: '';
+                        left: -5px;
+                        top: 0;
+                        width: 20px;
+                        height: 20px;
+                        border: 2.5px solid #BDBDBD;
+                        box-sizing: border-box;
+                        border-radius: 2px;
+
+                    }
+
+                    input {
+                        margin-right: 10px;
+                        opacity: 0;
+                    }
+                }
+
+                .active {
+                    &::after {
+                        display: block;
+                        position: absolute;
+                        content: url('/img/check.svg');
+                        left: -5px;
+                        top: 0;
+                        width: 20px;
+                        height: 20px;
+                        border: 2.5px solid #BDBDBD;
+                        box-sizing: border-box;
+                        border-radius: 2px;
+                        background: #FFCC33;
+
+                    }
+                }
+            }
+        }
+
+
+
+        textarea {
+            width: 100%;
+            padding: 5px;
+            height: 120px;
+            margin-top: 15px;
+            resize: none;
+            border: 1px solid #000000;
+            box-sizing: border-box;
+            font-size: 18px;
+            line-height: 17px;
+
+            &:focus {
+                outline: none;
+
+            }
+        }
+    }
+
+    &__appraise-button {
+        display: flex;
+        justify-content: center;
+
+        button {
+            margin-top: 20px;
+            font-family: Renault Life;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 21px;
+            background: #FFCC33;
+            padding: 10px 20px;
+
+            &:active {
+                box-shadow: 0 0 4px black;
+            }
+        }
+    }
+
+    &__thanks {
+        margin-top: 100px;
+
+        p {
+            text-align: center;
+
+
+            &:first-child {
+                line-height: 20px;
+                font-size: 18px;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+
+            &:last-child {
+                font-size: 16px;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
+
+.survey-footer {
+    position: absolute;
+    bottom: 20px;
+    left: calc(50% - 40px);
+}
+
+.hide {
+    transition: .3s;
+    opacity: 0;
+    transform: scale(0);
+
+}
+
+.absolute {
+    position: absolute;
+    transition: .3s;
+    opacity: 0;
+    transform: scale(0);
+    z-index: -1;
+
+}
+
+.send {
+    margin-bottom: 50px;
+}
+
+.good-appraise {
+    span {
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 19px;
+    }
+
+    label {
+        textarea {
+            margin-top: 5px;
+            height: 150px;
+            font-size: 18px;
+        }
+    }
+
+    p {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 16px;
+        color: #000000;
+    }
+}
+
+
+
+@media (max-width:320px) {
+    .survey-header {
+        margin-bottom: 25px;
+
+        img {
+            width: 40px;
+        }
+    }
+
+    .survey-main__question {
+        margin-bottom: 20px;
+    }
+
+    .survey-main__appraise-bar {
+        height: 130px;
+    }
+
+    .survey-main__answer-to-question1 textarea {
+        height: 100px;
+    }
+}
